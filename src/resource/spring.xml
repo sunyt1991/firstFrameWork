@@ -20,7 +20,7 @@
 		</property>
 	</bean>
 
-	<context:component-scan base-package="business.base.dao,business.system.dao,business.system.service,business.manager.dao,business.manager.service" />
+	<context:component-scan base-package="business.base.dao,business.base.service,business.system.dao,business.system.service,business.manager.dao,business.manager.service" />
 
     <aop:aspectj-autoproxy />
 
