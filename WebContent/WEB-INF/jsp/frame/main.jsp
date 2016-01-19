@@ -189,20 +189,16 @@
 			<div class="clear"></div>
 			<div style="margin-right: 10px;">
 				<div class="fr">
-					 <a href="javascript:void(0)" class="easyui-linkbutton"
-						iconCls="icon-logout" plain="true" size='large' onclick="logout()"
-						title="退出"></a>
+					 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-logout" plain="true" size='large' onclick="logout()" title="退出"></a>
 				</div>
-				<div class="fr txt" style="line-height: 45px;">您好
-					XXX
-				</div>
+				<div class="fr txt" style="line-height: 45px;">您好  管理员</div>
 			</div>
 		</div>
 		<!-- 这里是banner的前景区 class="bannerarea"${config.systemBanner }-->
 		<div  class="bannerarea"></div>
 		<div class="clear"></div>
 	</div>
-	<div id="menuDiv" data-options="region:'west',split:true,title:'系统功能',href:'${ctx }/control/role/leftmenu.action'" style="width: 190px;"></div>
+	<div id="menuDiv" data-options="region:'west',split:true,title:'系统功能',href:'${ctx }/role/leftmenu.action'" style="width: 190px;"></div>
 
 	<div data-options="region:'south',border:false">
 		<div class="bottom">

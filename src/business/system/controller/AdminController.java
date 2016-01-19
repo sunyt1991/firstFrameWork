@@ -32,22 +32,20 @@ public class AdminController extends BaseController {
 	@ResponseBody
 	public Json login(String username,String password) {		
 		Admin admin=adminService.login(username,password);
-		SessionInfo sessionInfo = new SessionInfo();
-		sessionInfo.setAdminId(admin.getId());
-		sessionInfo.setLoginName(admin.getLoginname());
-		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();  
-		sessionInfo.setIp(IpUtil.getIpAddr(request));
-		request.getSession().setAttribute(ConfigUtil.getSessionInfoName(), sessionInfo);
-		
 		Json json = new Json();
-		try {
-			json.setMessage("yes");
+		if(admin!=null){
+			SessionInfo sessionInfo = new SessionInfo();
+			sessionInfo.setAdminId(admin.getId());
+			sessionInfo.setLoginName(admin.getLoginname());
+			HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();  
+			sessionInfo.setIp(IpUtil.getIpAddr(request));
+			request.getSession().setAttribute(ConfigUtil.getSessionInfoName(), sessionInfo);
+			json.setMessage("登录成功");
 			json.setStatusCode(Json.STAE_CODE_SUCCESS);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		}else{
+			json.setMessage("用户名或密码错误");
+			json.setStatusCode(Json.STAE_CODE_ERROR);
 		}
-		System.out.println(">>jsonL:"+json);
 		return json;
 	}
 

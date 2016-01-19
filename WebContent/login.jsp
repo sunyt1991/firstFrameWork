@@ -20,7 +20,6 @@
 				};
 				var url="${ctx}/admin/login.action";
 				$.post(url,data,function(json){
-					alert(json);
 					if (json.statusCode == '200') {
 						window.location.href = "${ctx}/frame/main.action";
 					} else if (json.statusCode == '300') {
