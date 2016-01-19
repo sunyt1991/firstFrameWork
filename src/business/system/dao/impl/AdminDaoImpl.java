@@ -3,10 +3,15 @@ package business.system.dao.impl;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+import business.base.dao.impl.BaseDaoImpl;
 import business.system.dao.AdminDao;
 import business.system.entity.Admin;
+import business.system.entity.Role;
 
-public class AdminImpl implements AdminDao{
+@Repository("adminDao")
+public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public Serializable save(Admin o) {
@@ -126,6 +131,13 @@ public class AdminImpl implements AdminDao{
 	public Integer executeHql(String hql, List<Object> param) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Role> getRoles(Admin admin) {
+		List<Role> roles=admin.getRoles();
+		System.out.println(">>>roles.size:"+roles.size());
+		return roles;
 	}
 
 }

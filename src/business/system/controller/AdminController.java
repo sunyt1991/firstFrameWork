@@ -48,6 +48,13 @@ public class AdminController extends BaseController {
 		}
 		return json;
 	}
+	
+	@RequestMapping("/leftmenu")
+	@ResponseBody
+	public void leftMenu(){
+		int adminId=getSession().getAdminId();
+		adminService.getRoles(adminId);
+	}
 
 	
 	

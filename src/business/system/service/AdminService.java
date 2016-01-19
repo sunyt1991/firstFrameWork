@@ -1,6 +1,9 @@
 package business.system.service;
 
+import java.util.List;
+
 import business.system.entity.Admin;
+import business.system.entity.Role;
 
 public interface AdminService {
 	
@@ -11,5 +14,9 @@ public interface AdminService {
 	public void update(Admin admin);
 
 	public void delete(String ids);
+	
+	public List<Role> getRoles(int adminId);
+		
+	
 
 }

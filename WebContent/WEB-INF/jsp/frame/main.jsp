@@ -198,7 +198,7 @@
 		<div  class="bannerarea"></div>
 		<div class="clear"></div>
 	</div>
-	<div id="menuDiv" data-options="region:'west',split:true,title:'系统功能',href:'${ctx }/role/leftmenu.action'" style="width: 190px;"></div>
+	<div id="menuDiv" data-options="region:'west',split:true,title:'系统功能',href:'${ctx }/admin/leftmenu.action'" style="width: 190px;"></div>
 
 	<div data-options="region:'south',border:false">
 		<div class="bottom">

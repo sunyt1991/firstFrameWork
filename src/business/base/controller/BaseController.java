@@ -2,12 +2,20 @@ package business.base.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import plug.SessionInfo;
+import util.ConfigUtil;
 import util.StringEscapeEditor;
 
 @Controller
@@ -24,5 +32,11 @@ public class BaseController {
 	public String redirectJsp(@PathVariable String folder, @PathVariable String jspName) {
 		return "/" + folder + "/" + jspName;
 	}
-
+	
+	public SessionInfo getSession(){
+		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest(); 
+		SessionInfo sessionInfo=(SessionInfo)request.getSession().getAttribute(ConfigUtil.getSessionInfoName());
+		return sessionInfo;
+	} 
+	
 }
