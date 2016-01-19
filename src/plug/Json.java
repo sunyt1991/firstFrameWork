@@ -2,32 +2,53 @@ package plug;
 
 public class Json implements java.io.Serializable {
 
-	private boolean success = false;// is successful
-	private String msg = "";// message
-	private Object obj = null;// other info
+	public final static String STAE_CODE_SUCCESS = "200"; // 表示操作成功
+	
+	public final static String STAE_CODE_ERROR = "300"; // 表示操作失败
+	
+	public final static String STAE_CODE_OUTTIME = "301"; // 表示超时
+	
+	private String statusCode; 
+	
+	private String message; 
+	
+	private Object params;
+	
+	private String param;
 
-	public String getMsg() {
-		return msg;
+	public String getStatusCode() {
+		return statusCode;
 	}
 
-	public void setMsg(String msg) {
-		this.msg = msg;
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
 	}
 
-	public Object getObj() {
-		return obj;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setObj(Object obj) {
-		this.obj = obj;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
-	public boolean isSuccess() {
-		return success;
+	public Object getParams() {
+		return params;
 	}
 
-	public void setSuccess(boolean success) {
-		this.success = success;
+	public void setParams(Object params) {
+		this.params = params;
 	}
+
+	public String getParam() {
+		return param;
+	}
+
+	public void setParam(String param) {
+		this.param = param;
+	}
+
+	
+	
 
 }

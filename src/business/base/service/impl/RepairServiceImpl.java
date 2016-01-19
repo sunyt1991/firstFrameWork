@@ -10,8 +10,8 @@ public class RepairServiceImpl implements RepairService {
 
 	@Override
 	public void repair() {
-		System.out.println("Êı¾İĞŞ¸´¿ªÊ¼¡£¡£¡£");
-		System.out.println("Êı¾İĞŞ¸´Íê±Ï¡£¡£¡£");
+		System.out.println("æ•°æ®ä¿®å¤å¼€å§‹..");
+		System.out.println("æ•°æ®ä¿®å¤å®Œæ¯•..");
 	}
 
 	@Override

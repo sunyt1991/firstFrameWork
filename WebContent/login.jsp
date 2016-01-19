@@ -18,10 +18,10 @@
 						"password" : $("#password").val(),
 						"validCode" : $("#validCode").val()
 				};
-				var url="${ctx}/admin/login";
+				var url="${ctx}/admin/login.action";
 				$.post(url,data,function(json){
 					if (json.statusCode == '200') {
-						window.location.href = "${ctx}/control/frame/main.action";
+						window.location.href = "${ctx}/frame/main.action";
 					} else if (json.statusCode == '300') {
 						alert(json.message);
 					} else {

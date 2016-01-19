@@ -1,14 +1,23 @@
 package business.system.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
+import jxl.common.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import plug.Json;
+import plug.SessionInfo;
+import util.ConfigUtil;
+import util.IpUtil;
 import business.base.controller.BaseController;
 import business.system.entity.Admin;
 import business.system.service.AdminService;
-import jxl.common.Logger;
-import plug.Json;
 
 @Controller
 @RequestMapping("/admin")
@@ -19,35 +28,20 @@ public class AdminController extends BaseController {
 	@Autowired
 	private AdminService adminService;
 	
-	@RequestMapping("/user")
-	public String user() {
-		return "/admin/user";
-	}
-
-	@RequestMapping("/userAdd")
-	public String userAdd() {
-		return "/admin/userAdd";
-	}
-
-	@RequestMapping("/userEdit")
-	public String userEdit() {
-		return "/admin/userEdit";
-	}
-
-	@RequestMapping("/userRoleEdit")
-	public String userRoleEdit() {
-		return "/admin/userRoleEdit";
-	}
-	
 	@RequestMapping("/login")
 	@ResponseBody
-	public Json doNotNeedSession_login(Admin admin,String username,String password) {		
-		System.out.println(">>>>>>>>>>>:"+username+":"+password);
-		adminService.login(username,password);
+	public Json login(String username,String password) {		
+		Admin admin=adminService.login(username,password);
+		SessionInfo sessionInfo = new SessionInfo();
+		sessionInfo.setAdminId(admin.getId());
+		sessionInfo.setLoginName(admin.getLoginname());
+		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();  
+		sessionInfo.setIp(IpUtil.getIpAddr(request));
+		request.getSession().setAttribute(ConfigUtil.getSessionInfoName(), sessionInfo);
+		
 		Json json=new Json();
-		json.setMsg("yes");
-		json.setObj(null);
-		json.setSuccess(true);
+		json.setMessage("yes");
+		json.setStatusCode(Json.STAE_CODE_SUCCESS);
 		return json;
 	}
 

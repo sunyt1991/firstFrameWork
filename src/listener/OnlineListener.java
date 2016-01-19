@@ -91,13 +91,11 @@ public class OnlineListener implements ServletContextListener, ServletContextAtt
 		
 	}
 	
-	/**
-	 * Ìí¼Ó¼üÖµ¶Ôµ½sessionÖĞÊ±µÄ»Øµ÷º¯Êı(ÀıÈç:µÇÂ¼³É¹¦)
-	 */
 	@Override
 	public void attributeAdded(HttpSessionBindingEvent evt) {
 		String name = evt.getName();
 		logger.debug("The name of attribute saved in session: " + name);
+		System.out.println(name);
 		if (ConfigUtil.getSessionInfoName().equals(name)) {
 			HttpSession session = evt.getSession();
 			SessionInfo sessionInfo = (SessionInfo) session.getAttribute(name);
@@ -105,6 +103,8 @@ public class OnlineListener implements ServletContextListener, ServletContextAtt
 				//OnlineServiceI onlineService = (OnlineServiceI) ctx.getBean("onlineService");
 				//onlineService.saveOrUpdateTonlineByLoginNameAndIp(sessionInfo.getLoginName(), sessionInfo.getIp());
 			}
+		}else{
+			
 		}
 		
 	}
@@ -152,22 +152,22 @@ public class OnlineListener implements ServletContextListener, ServletContextAtt
 	}
 
 	/**
-	 * ÏµÍ³Ïú»ÙÊ±»Øµ÷
+	 * ÏµÍ³ï¿½ï¿½ï¿½Ê±ï¿½Øµï¿½
 	 */
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
 		logger.debug("server closed");
-		System.out.println("ÏµÍ³Ïú»Ù");
+		System.out.println("ç³»ç»Ÿå…³é—­");
 	}
 
 	/**
-	 * ÏµÍ³Æô¶¯Ê±»Øµ÷
+	 * ÏµÍ³ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Øµï¿½
 	 */
 	@Override
 	public void contextInitialized(ServletContextEvent evt) {
 		logger.debug("server started");
 		ctx = WebApplicationContextUtils.getWebApplicationContext(evt.getServletContext());
-		System.out.println("ÏµÍ³Æô¶¯:"+ctx);
+		System.out.println("ç³»ç»Ÿå¯åŠ¨:"+ctx);
 	}
 
 	

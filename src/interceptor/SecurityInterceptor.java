@@ -51,11 +51,11 @@ public class SecurityInterceptor implements HandlerInterceptor{
 			request.getRequestDispatcher("/error/404.jsp").forward(request, response);
 			return false;
 		}
-		if (!sessionInfo.getAuthUrls().contains(url)) {// has no authority
-			//System.out.println("has no authority");
-			request.getRequestDispatcher("/error/404.jsp").forward(request, response);
-			return false;
-		}
+//		if (!sessionInfo.getAuthUrls().contains(url)) {// has no authority
+//			//System.out.println("has no authority");
+//			request.getRequestDispatcher("/error/404.jsp").forward(request, response);
+//			return false;
+//		}
 		return true;
 	}
 

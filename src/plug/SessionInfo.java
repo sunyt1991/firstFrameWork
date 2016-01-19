@@ -2,69 +2,28 @@ package plug;
 
 import java.io.Serializable;
 
-/**
- * @author Administrator
- *
- */
 public class SessionInfo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private String userId;
+	
+	private int adminId;
+	
 	private String loginName;
-	private String loginPassword;
+	
+	private String pwd;
+	
 	private String ip;
-	private String authIds;
-	private String authNames;
-	private String authUrls;
-	private String roleIds;
-	private String roleNames;
 
-	public String getAuthUrls() {
-		return authUrls;
+	private String roleId;
+	
+	private String roleName;
+	
+	public int getAdminId() {
+		return adminId;
 	}
 
-	public void setAuthUrls(String authUrls) {
-		this.authUrls = authUrls;
-	}
-
-	public String getAuthNames() {
-		return authNames;
-	}
-
-	public void setAuthNames(String authNames) {
-		this.authNames = authNames;
-	}
-
-	public String getRoleIds() {
-		return roleIds;
-	}
-
-	public void setRoleIds(String roleIds) {
-		this.roleIds = roleIds;
-	}
-
-	public String getRoleNames() {
-		return roleNames;
-	}
-
-	public void setRoleNames(String roleNames) {
-		this.roleNames = roleNames;
-	}
-
-	public String getAuthIds() {
-		return authIds;
-	}
-
-	public void setAuthIds(String authIds) {
-		this.authIds = authIds;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setAdminId(int adminId) {
+		this.adminId = adminId;
 	}
 
 	public String getLoginName() {
@@ -75,12 +34,12 @@ public class SessionInfo implements Serializable {
 		this.loginName = loginName;
 	}
 
-	public String getLoginPassword() {
-		return loginPassword;
+	public String getPwd() {
+		return pwd;
 	}
 
-	public void setLoginPassword(String loginPassword) {
-		this.loginPassword = loginPassword;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
 	public String getIp() {
@@ -94,5 +53,23 @@ public class SessionInfo implements Serializable {
 	public String toString() {
 		return loginName;
 	}
+
+	public String getRoleid() {
+		return roleId;
+	}
+
+	public void setRoleid(String roleid) {
+		this.roleId = roleid;
+	}
+
+	public String getRolename() {
+		return roleName;
+	}
+
+	public void setRolename(String rolename) {
+		this.roleName = rolename;
+	}
+	
+	
 
 }
