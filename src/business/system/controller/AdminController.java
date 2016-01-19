@@ -39,9 +39,15 @@ public class AdminController extends BaseController {
 		sessionInfo.setIp(IpUtil.getIpAddr(request));
 		request.getSession().setAttribute(ConfigUtil.getSessionInfoName(), sessionInfo);
 		
-		Json json=new Json();
-		json.setMessage("yes");
-		json.setStatusCode(Json.STAE_CODE_SUCCESS);
+		Json json = new Json();
+		try {
+			json.setMessage("yes");
+			json.setStatusCode(Json.STAE_CODE_SUCCESS);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(">>jsonL:"+json);
 		return json;
 	}
 

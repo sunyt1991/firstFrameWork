@@ -13,11 +13,10 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 	<context:component-scan base-package="business.base.controller,business.manager.controller,business.system.controller" />
-	<!-- 
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
 			<list>
-				<bean id="fastJsonHttpMessageConverter" class="rml.util.FastJsonHttpMessageConverter">
+				<bean id="fastJsonHttpMessageConverter" class="util.FastJsonHttpMessageConverter">
 					<property name="supportedMediaTypes">
 						<list>
 							<value>text/html;charset=UTF-8</value>
@@ -27,8 +26,7 @@
 			</list>
 		</property>
 	</bean>
- -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/" p:suffix=".jsp" />
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
 
 	<!-- file upload -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
