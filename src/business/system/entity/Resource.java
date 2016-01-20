@@ -121,10 +121,8 @@ public class Resource {
 		this.options = options;
 	}
 
-//	@JsonIgnore
-//	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
-//	@JoinTable(name = "sys_role_resource", joinColumns = { @JoinColumn(name = "resourceid", unique = false, nullable = false, insertable = true, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "roleid", unique = false, nullable = false, insertable = true, updatable = false) })
-	 @ManyToMany(mappedBy = "resources")  
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "sys_role_resource", joinColumns = @JoinColumn(name = "resourceid"),inverseJoinColumns = @JoinColumn(name = "roleid"))
 	public List<Role> getRoles() {
 		return roles;
 	}

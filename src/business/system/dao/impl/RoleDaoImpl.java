@@ -14,7 +14,6 @@ public class RoleDaoImpl implements RoleDao{
 
 	@Override
 	public List<Resource> getResources(Role role) {
-		System.out.println(">:"+role.getName());
 		return role.getResources();
 	}
 

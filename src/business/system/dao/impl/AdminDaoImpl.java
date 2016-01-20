@@ -113,7 +113,6 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public List<Role> getRoles(Admin admin) {
 		List<Role> roles=admin.getRoles();
-		System.out.println(">>>roles.size:"+roles.size());
 		return roles;
 	}
 

@@ -69,8 +69,7 @@ public class Role {
 		this.admins = admins;
 	}
 
-	@ManyToMany
-	@JoinTable(name = "sys_role_resource",  joinColumns = @JoinColumn(name = "resourceid"), inverseJoinColumns = @JoinColumn(name = "roleid"))
+	@ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
 	public List<Resource> getResources() {
 		return resources;
 	}
