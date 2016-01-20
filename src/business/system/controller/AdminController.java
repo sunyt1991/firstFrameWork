@@ -1,5 +1,7 @@
 package business.system.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import jxl.common.Logger;
@@ -17,7 +19,10 @@ import util.ConfigUtil;
 import util.IpUtil;
 import business.base.controller.BaseController;
 import business.system.entity.Admin;
+import business.system.entity.Resource;
+import business.system.entity.Role;
 import business.system.service.AdminService;
+import business.system.service.RoleService;
 
 @Controller
 @RequestMapping("/admin")
@@ -27,6 +32,9 @@ public class AdminController extends BaseController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private RoleService roleService;
 	
 	@RequestMapping("/login")
 	@ResponseBody
@@ -51,9 +59,18 @@ public class AdminController extends BaseController {
 	
 	@RequestMapping("/leftmenu")
 	@ResponseBody
-	public void leftMenu(){
+	public Json leftMenu(){
 		int adminId=getSession().getAdminId();
-		adminService.getRoles(adminId);
+		List<Role> roles=adminService.getRoles(adminId);
+		Role role=null;
+		if(roles!=null&&roles.size()>0){
+			role=roles.get(0);
+		}
+		System.out.println("role:"+role);
+		//根据角色获取菜单
+		List<Resource> resources=roleService.getResource(role);
+		System.out.println(">>:"+resources.size()+"1:"+resources.get(0).getName());
+		return null;
 	}
 
 	

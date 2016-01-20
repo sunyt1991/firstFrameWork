@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="sys_admin",schema = "")
 public class Admin {
-	private int id;
+	private Integer id;
 	
 	private String loginname;
 	
@@ -34,7 +34,7 @@ public class Admin {
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	

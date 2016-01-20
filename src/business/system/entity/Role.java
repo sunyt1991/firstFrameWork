@@ -1,20 +1,34 @@
 package business.system.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
 @Table(name="sys_role",schema = "")
 public class Role {
 	
-	private int id;
+	private Integer id;
 	
 	private String name;
 	
 	private String descn;
+	
+	private List<Admin> admins=new ArrayList<Admin>();
+	
+	private List<Resource> resources = new ArrayList<Resource>();
 
 	@Id
 	@Column(name = "id",  nullable = false, length = 11)
@@ -22,7 +36,7 @@ public class Role {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -43,6 +57,28 @@ public class Role {
 	public void setDescn(String descn) {
 		this.descn = descn;
 	}
+	
+	
+	@ManyToMany  
+    @JoinTable(name = "sys_admin_role", joinColumns = @JoinColumn(name = "roleid"), inverseJoinColumns = @JoinColumn(name = "adminid"))  
+	public List<Admin> getAdmins() {
+		return admins;
+	}
+
+	public void setAdmins(List<Admin> admins) {
+		this.admins = admins;
+	}
+
+	@ManyToMany
+	@JoinTable(name = "sys_role_resource",  joinColumns = @JoinColumn(name = "resourceid"), inverseJoinColumns = @JoinColumn(name = "roleid"))
+	public List<Resource> getResources() {
+		return resources;
+	}
+
+	public void setResources(List<Resource> resources) {
+		this.resources = resources;
+	}
+
 	
 	
 }
