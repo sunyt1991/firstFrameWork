@@ -66,7 +66,7 @@ public class AdminController extends BaseController {
 		if(roles!=null&&roles.size()>0){
 			role=roles.get(0);
 		}
-		System.out.println("role:"+role);
+		System.out.println(">role:"+role.getName());
 		//根据角色获取菜单
 		List<Resource> resources=roleService.getResource(role);
 		System.out.println(">>:"+resources.size()+"1:"+resources.get(0).getName());

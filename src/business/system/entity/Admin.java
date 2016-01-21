@@ -31,7 +31,7 @@ public class Admin {
 	
 	@Id
 	@Column(name = "id",  nullable = false, length = 11)
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
@@ -78,8 +78,8 @@ public class Admin {
 		this.isdelete = isdelete;
 	}
 	
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
-	@JoinTable(name = "sys_admin_role", joinColumns = { @JoinColumn(name = "adminid", unique = false, nullable = false, insertable = true, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "roleid", unique = false, nullable = false, insertable = true, updatable = false) })
+	@ManyToMany
+	@JoinTable(name = "sys_admin_role", joinColumns = { @JoinColumn(name = "adminid") }, inverseJoinColumns = { @JoinColumn(name = "roleid") })
 	public List<Role> getRoles() {
 		return roles;
 	}

@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="sys_resource",schema = "")
+@Table(name="sys_resource")
 public class Resource {
 	
 	private Integer id;
@@ -41,7 +41,7 @@ public class Resource {
 
 	@Id
 	@Column(name = "id",  nullable = false, length = 11)
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -121,8 +121,10 @@ public class Resource {
 		this.options = options;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "sys_role_resource", joinColumns = @JoinColumn(name = "resourceid"),inverseJoinColumns = @JoinColumn(name = "roleid"))
+	@ManyToMany
+	@JoinTable(name = "sys_role_resource", 
+		joinColumns = @JoinColumn(name = "resourceid"),
+		inverseJoinColumns = @JoinColumn(name = "roleid"))
 	public List<Role> getRoles() {
 		return roles;
 	}

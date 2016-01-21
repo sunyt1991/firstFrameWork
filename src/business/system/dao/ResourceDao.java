@@ -1,5 +1,10 @@
 package business.system.dao;
 
-public class ResourceDao {
+import java.util.List;
 
+import business.base.dao.BaseDao;
+import business.system.entity.Resource;
+import business.system.entity.Role;
+
+public interface ResourceDao extends BaseDao<Resource>{
 }

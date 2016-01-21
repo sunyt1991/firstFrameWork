@@ -32,7 +32,7 @@ public class Role {
 
 	@Id
 	@Column(name = "id",  nullable = false, length = 11)
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -60,7 +60,9 @@ public class Role {
 	
 	
 	@ManyToMany  
-    @JoinTable(name = "sys_admin_role", joinColumns = @JoinColumn(name = "roleid"), inverseJoinColumns = @JoinColumn(name = "adminid"))  
+    @JoinTable(name = "sys_admin_role", 
+    joinColumns = @JoinColumn(name = "roleid"),
+    inverseJoinColumns = @JoinColumn(name = "adminid"))  
 	public List<Admin> getAdmins() {
 		return admins;
 	}
@@ -69,7 +71,10 @@ public class Role {
 		this.admins = admins;
 	}
 
-	@ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
+	@ManyToMany
+	@JoinTable(name = "sys_role_resource", 
+		joinColumns = @JoinColumn(name = "roleid"),
+		inverseJoinColumns = @JoinColumn(name = "resourceid"))
 	public List<Resource> getResources() {
 		return resources;
 	}
