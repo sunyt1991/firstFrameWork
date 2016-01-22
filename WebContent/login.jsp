@@ -29,6 +29,9 @@
 					}
 				},"json");
 			}
+			setTimeout(function(){
+			    $("#username").focus();
+			},1000);
 		</script>
 	</head>
 	<body id="loginFrame">
