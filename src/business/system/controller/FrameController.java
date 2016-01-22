@@ -9,8 +9,13 @@ public class FrameController {
 	
 	
 	@RequestMapping("/main")
-	public String user() {
+	public String main() {
 		return "/frame/main";
+	}
+	
+	@RequestMapping("/homepage")
+	public String homepage() {
+		return "/frame/homepage";
 	}
 	
 }

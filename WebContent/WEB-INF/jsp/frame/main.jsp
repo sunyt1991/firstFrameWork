@@ -208,7 +208,7 @@
 	
 	<div data-options="region:'center'">
 		<div id="center_tabs" class="easyui-tabs" data-options="tools:'#changeTheme',border:false,fit:true">
-			<div title="欢迎" href="${ctx }/welcom.jsp"></div>
+			<div title="欢迎" href="${ctx }/frame/homepage.action"></div>
 		</div>
 	</div>
 
