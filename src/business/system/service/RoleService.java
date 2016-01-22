@@ -2,11 +2,11 @@ package business.system.service;
 
 import java.util.List;
 
-import business.system.entity.Resource;
+import plug.ZTreeInfo;
 import business.system.entity.Role;
 
 public interface RoleService {
 
-	public List<Resource> getResource(Role role);
+	public List<ZTreeInfo> getResource(Role role);
 	
 }

@@ -16,12 +16,15 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import plug.SessionInfo;
 import util.ConfigUtil;
+import util.JacksonUtil;
 import util.StringEscapeEditor;
 
 @Controller
 @RequestMapping("/baseController")
 public class BaseController {
 
+	protected JacksonUtil jsonUtil = new JacksonUtil("yyyy-MM-dd HH:mm:ss");
+	
 	@InitBinder
 	public void initBinder(ServletRequestDataBinder binder) {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"), true));

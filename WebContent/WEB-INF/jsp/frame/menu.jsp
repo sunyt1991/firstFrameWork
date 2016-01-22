@@ -5,7 +5,7 @@
 <script type="text/javascript" charset="utf-8" src="${ctx}/js/ztree/jquery.ztree.all-3.5.js"></script>
 <script type="text/javascript">
 	$(function(){
-		var nodes = ${json};
+		var nodes = ${json.param};
 		var setting = {
 			view: {
 				selectedMulti: false
