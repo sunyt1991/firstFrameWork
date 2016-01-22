@@ -2,45 +2,50 @@ package business.system.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-@Table(name="sys_resource")
+@Table(name="sys_resource",schema = "")
 public class Resource {
 	
+	@Id
+	@Column(name = "id",  nullable = false, length = 10)
 	private Integer id;
 	
+	@Column(name = "name", nullable = true, length = 50)
 	private String name;
 	
+	@Column(name = "restype", nullable = true, length = 20)
 	private String restype;
 	
+	@Column(name = "resstring", nullable = true, length = 200)
 	private String resstring;
 	
+	@Column(name = "descn", nullable = true, length = 200)
 	private String descn;
 	
-	private int pid;
+	@Column(name = "pid", nullable = true, length = 10)
+	private Integer pid;
 	
-	private int ordernum;
+	@Column(name = "ordernum", nullable = false, length = 10)
+	private Integer ordernum;
+
+	@Column(name="leaf",nullable=true,length=10)
+	private Integer leaf;
 	
+	@Column(name = "opentype", nullable = true, length = 10)
 	private String opentype;
 	
+	@Column(name = "options", nullable = true, length = 255)
 	private String options;
 	
+	@ManyToMany(mappedBy = "resources")  
 	private List<Role> roles = new ArrayList<Role>();
 
-	@Id
-	@Column(name = "id",  nullable = false, length = 11)
 	public Integer getId() {
 		return id;
 	}
@@ -49,7 +54,6 @@ public class Resource {
 		this.id = id;
 	}
 
-	@Column(name = "name", nullable = true, length = 20)
 	public String getName() {
 		return name;
 	}
@@ -57,8 +61,7 @@ public class Resource {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	@Column(name = "restype", nullable = true, length = 20)
+	
 	public String getRestype() {
 		return restype;
 	}
@@ -67,7 +70,6 @@ public class Resource {
 		this.restype = restype;
 	}
 
-	@Column(name = "resstring", nullable = true, length = 20)
 	public String getResstring() {
 		return resstring;
 	}
@@ -76,7 +78,6 @@ public class Resource {
 		this.resstring = resstring;
 	}
 
-	@Column(name = "descn", nullable = true, length = 20)
 	public String getDescn() {
 		return descn;
 	}
@@ -85,25 +86,30 @@ public class Resource {
 		this.descn = descn;
 	}
 
-	@Column(name = "pid", nullable = true, length = 20)
-	public int getPid() {
+	public Integer getPid() {
 		return pid;
 	}
 
-	public void setPid(int pid) {
+	public void setPid(Integer pid) {
 		this.pid = pid;
 	}
 
-	@Column(name = "ordernum", nullable = true, length = 20)
-	public int getOrdernum() {
+	public Integer getOrdernum() {
 		return ordernum;
 	}
 
-	public void setOrdernum(int ordernum) {
+	public void setOrdernum(Integer ordernum) {
 		this.ordernum = ordernum;
 	}
 
-	@Column(name = "opentype", nullable = true, length = 20)
+	public Integer getLeaf() {
+		return leaf;
+	}
+
+	public void setLeaf(Integer leaf) {
+		this.leaf = leaf;
+	}
+
 	public String getOpentype() {
 		return opentype;
 	}
@@ -112,7 +118,6 @@ public class Resource {
 		this.opentype = opentype;
 	}
 
-	@Column(name = "options", nullable = true, length = 20)
 	public String getOptions() {
 		return options;
 	}
@@ -121,10 +126,6 @@ public class Resource {
 		this.options = options;
 	}
 
-	@ManyToMany
-	@JoinTable(name = "sys_role_resource", 
-		joinColumns = @JoinColumn(name = "resourceid"),
-		inverseJoinColumns = @JoinColumn(name = "roleid"))
 	public List<Role> getRoles() {
 		return roles;
 	}
@@ -132,7 +133,7 @@ public class Resource {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-	
+
 	
 	
 }
