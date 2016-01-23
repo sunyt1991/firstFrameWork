@@ -1,6 +1,5 @@
 package business.system.controller;
 
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import jxl.common.Logger;
@@ -9,16 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import plug.Json;
 import plug.RandomValidateCode;
 import plug.SessionInfo;
-import plug.ZTreeInfo;
 import util.ConfigUtil;
 import util.IpUtil;
 import business.base.controller.BaseController;
 import business.system.entity.Admin;
-import business.system.entity.Role;
 import business.system.service.AdminService;
 import business.system.service.RoleService;
 
@@ -62,22 +58,11 @@ public class AdminController extends BaseController {
 		return json;
 	}
 	
-	@RequestMapping("/leftmenu")
-	public ModelAndView leftMenu(){
-		Json json = new Json();
-		int adminId=getSession().getAdminId();
-		List<Role> roles=adminService.getRoles(adminId);
-		Role role=null;
-		if(roles!=null&&roles.size()>0){
-			role=roles.get(0);
-		}
-		//根据角色获取菜单
-		List<ZTreeInfo> resources=roleService.getResource(role);
-		String resourcesStr=jsonUtil.toJson(resources);
-		System.out.println(">>:"+resourcesStr);
-		json.setParam(resourcesStr);
-		json.setParam(resourcesStr);
-		return new ModelAndView("frame/menu").addObject("json", json);
+	@RequestMapping("/list")
+	@ResponseBody
+	public String list(HttpServletRequest request){
+		
+		return "";
 	}
 	
 	

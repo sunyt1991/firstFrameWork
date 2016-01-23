@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import util.EncryUtil;
 import business.base.dao.BaseDao;
 import business.system.dao.AdminDao;
 import business.system.entity.Admin;
 import business.system.entity.Role;
 import business.system.service.AdminService;
-import util.EncryUtil;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService{
@@ -69,6 +69,13 @@ public class AdminServiceImpl implements AdminService{
 	public List<Role> getRoles(int adminId) {
 		Admin admin=baseDao.get("from Admin where id=?", new Object[]{adminId});
 		return adminDao.getRoles(admin);
+	}
+
+	@Override
+	public List<Admin> list(Object[] params) {
+		baseDao.get("", params);
+		
+		return null;
 	}
 	
 }

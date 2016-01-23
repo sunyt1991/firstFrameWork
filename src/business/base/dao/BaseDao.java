@@ -2,6 +2,7 @@ package business.base.dao;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 public interface BaseDao<T> {
 
@@ -18,7 +19,7 @@ public interface BaseDao<T> {
 	public List findSQL(String hql, Class T);
 	
 	public List findSQL(String hql);
-
+	
 	public List<T> find(String hql, Object[] param);
 
 	public List<T> find(String hql, List<Object> param);

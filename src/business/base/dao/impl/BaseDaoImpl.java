@@ -2,6 +2,7 @@ package business.base.dao.impl;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Query;
 import org.hibernate.Session;

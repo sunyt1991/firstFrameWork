@@ -15,6 +15,8 @@ public interface AdminService {
 
 	public void delete(String ids);
 	
+	public List<Admin> list(Object[]  params);
+	
 	public List<Role> getRoles(int adminId);
 		
 	

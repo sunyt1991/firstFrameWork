@@ -62,7 +62,7 @@
 		<!-- autoscan annotation for hiberante config -->
 		<property name="packagesToScan">
 			<list>
-				<value>business.manager.entity</value>
+				<value>business.manage.entity</value>
 				<value>business.system.entity</value>
 			</list>
 		</property>
