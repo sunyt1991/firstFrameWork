@@ -1,15 +1,22 @@
 package business.system.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import jxl.common.Logger;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import plug.Json;
+import plug.PageData;
 import plug.RandomValidateCode;
+import plug.RequestPage;
 import plug.SessionInfo;
 import util.ConfigUtil;
 import util.IpUtil;
@@ -58,11 +65,20 @@ public class AdminController extends BaseController {
 		return json;
 	}
 	
+	@RequestMapping("/index")
+	public String main() {
+		return "system/admin/index";
+	}
+	
 	@RequestMapping("/list")
 	@ResponseBody
 	public String list(HttpServletRequest request){
-		
-		return "";
+		RequestPage page = getPageBean(request);
+		List<Admin> admins=adminService.list(null, page);
+		PageData<Admin> pd = new PageData<Admin>();
+		pd.setRows(admins);
+		pd.setTotal(11);
+		return jsonUtil.toJson(admins);
 	}
 	
 	

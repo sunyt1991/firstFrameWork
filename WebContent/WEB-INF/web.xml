@@ -74,7 +74,7 @@
 	 <!-- Spring刷新Log4j配置文件变动的间隔,单位为毫秒 -->
 	<context-param> 
     	<param-name>log4jRefreshInterval</param-name> 
-    	<param-value>60000</param-value> 
+    	<param-value>600000</param-value> 
 	</context-param> 
 	<!-- 设置由Sprng载入的Log4j配置文件位置 -->
 	<listener> 

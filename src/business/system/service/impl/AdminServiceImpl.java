@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import plug.Page;
+import plug.RequestPage;
 import util.EncryUtil;
 import business.base.dao.BaseDao;
 import business.system.dao.AdminDao;
@@ -72,10 +74,8 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<Admin> list(Object[] params) {
-		baseDao.get("", params);
-		
-		return null;
+	public List<Admin> list(Object[] params,RequestPage requestPage) {
+		return baseDao.find("from Admin where 1=1 ", params,requestPage.getPageNum(),requestPage.getNumPerPage());
 	}
 	
 }
