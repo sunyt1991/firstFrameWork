@@ -2,12 +2,16 @@ package business.system.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import jxl.common.Logger;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
 import plug.Json;
 import plug.PageData;
 import plug.RandomValidateCode;
@@ -64,10 +68,14 @@ public class AdminController extends BaseController {
 		return "system/admin/index";
 	}
 	
+	@RequestMapping("/edit")
+	public ModelAndView edit(int id) {
+		return new ModelAndView("system/admin/edit").addObject("bean", adminService.getById(id));
+	}
+	
 	@RequestMapping("/list")
 	@ResponseBody
 	public PageData<Admin> list(HttpServletRequest request,Admin admin){
-		System.out.println(">>>>>>>>>>>>>>>>>adminL:"+admin);
 		PageData<Admin> admins=adminService.list(admin);
 		return admins;
 	}

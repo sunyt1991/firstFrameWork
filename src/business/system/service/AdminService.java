@@ -21,6 +21,6 @@ public interface AdminService {
 	
 	public List<Role> getRoles(int adminId);
 		
-	
+	public Admin getById(Integer id);
 
 }

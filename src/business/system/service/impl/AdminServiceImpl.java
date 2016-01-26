@@ -2,8 +2,10 @@ package business.system.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import plug.PageData;
 import util.EncryUtil;
 import business.base.dao.BaseDao;
@@ -37,19 +39,15 @@ public class AdminServiceImpl implements AdminService{
 		this.adminDao = adminDao;
 	}
 	
-	
 	@Override
 	public Admin login(String username,String password) {
 		Admin adminDb = baseDao.get("from Admin a where a.loginname = ? and a.pwd = ?", new Object[] { username, EncryUtil.e(password) });
-		System.out.println(">>>>>:"+adminDb);
 		if (adminDb != null) {
-			//BeanUtils.copyProperties(adminDb, admin, new String[] { "pwd" });
 			return adminDb;
 		}
 		return null;
 	}
 	
-
 	@Override
 	public void save(Admin admin) {
 		
@@ -84,25 +82,22 @@ public class AdminServiceImpl implements AdminService{
 		String hql = "from Admin t where 1=1 ";
 		List<Object> parms = new ArrayList<Object>();
 		hql = addWhere(online, hql, parms);
-		
-		System.out.println(">>>>>>>");
 		return baseDao.find(hql, parms);
 	}
 	
 	private Long total(Admin admin) {
-		System.out.println("1");
 		String hql = "select count(*) from Admin t where 1=1 ";
-		System.out.println("2");
-		
 		List<Object> parms = new ArrayList<Object>();
-		System.out.println("3");
-		
 		hql = addWhere(admin, hql, parms);
-		System.out.println("4");
 		return baseDao.count(hql, parms);
 	}
 	
 	private String addWhere(Admin admin, String hql, List<Object> parms) {
 		return hql;
+	}
+
+	@Override
+	public Admin getById(Integer id) {
+		return baseDao.get(Admin.class, id);
 	}
 }

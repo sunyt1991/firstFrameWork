@@ -8,7 +8,7 @@
 <script type="text/javascript">
 	var area=getPageArea();
 	function add() {
-		var url = "${ctx }/control/admin/edit.action";
+		var url = "${ctx }/admin/edit.action";
 		$("<div id='admin_edit_box' style='padding: 10px'></div>").show().dialog({
 			width : 790,
 			height : 520,
