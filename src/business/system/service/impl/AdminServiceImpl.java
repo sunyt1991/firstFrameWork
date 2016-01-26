@@ -2,12 +2,9 @@ package business.system.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import plug.PageData;
-import plug.RequestPage;
 import util.EncryUtil;
 import business.base.dao.BaseDao;
 import business.system.dao.AdminDao;
@@ -89,7 +86,7 @@ public class AdminServiceImpl implements AdminService{
 		hql = addWhere(online, hql, parms);
 		
 		System.out.println(">>>>>>>");
-		return adminDao.find(hql, parms);
+		return baseDao.find(hql, parms);
 	}
 	
 	private Long total(Admin admin) {
@@ -102,7 +99,7 @@ public class AdminServiceImpl implements AdminService{
 		
 		hql = addWhere(admin, hql, parms);
 		System.out.println("4");
-		return adminDao.count(hql, parms);
+		return baseDao.count(hql, parms);
 	}
 	
 	private String addWhere(Admin admin, String hql, List<Object> parms) {
