@@ -66,20 +66,6 @@ public class ResourceDaoImpl implements ResourceDao{
 	}
 
 	@Override
-	public List<Resource> find(String hql, Object[] param, Integer page,
-			Integer rows) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Resource> find(String hql, List<Object> param, Integer page,
-			Integer rows) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Resource get(Class<Resource> c, Serializable id) {
 		// TODO Auto-generated method stub
 		return null;

@@ -1,11 +1,12 @@
 package business.system.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import plug.Page;
+import plug.PageData;
 import plug.RequestPage;
 import util.EncryUtil;
 import business.base.dao.BaseDao;
@@ -74,8 +75,37 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<Admin> list(Object[] params,RequestPage requestPage) {
-		return baseDao.find("from Admin where 1=1 ", params,requestPage.getPageNum(),requestPage.getNumPerPage());
+	public PageData<Admin> list(Admin admin) {
+		PageData<Admin> p = new PageData<Admin>();
+		p.setRows(find(admin));
+		p.setTotal(total(admin));
+		return p;
+		
 	}
 	
+	private List<Admin> find(Admin online) {
+		String hql = "from Admin t where 1=1 ";
+		List<Object> parms = new ArrayList<Object>();
+		hql = addWhere(online, hql, parms);
+		
+		System.out.println(">>>>>>>");
+		return adminDao.find(hql, parms);
+	}
+	
+	private Long total(Admin admin) {
+		System.out.println("1");
+		String hql = "select count(*) from Admin t where 1=1 ";
+		System.out.println("2");
+		
+		List<Object> parms = new ArrayList<Object>();
+		System.out.println("3");
+		
+		hql = addWhere(admin, hql, parms);
+		System.out.println("4");
+		return adminDao.count(hql, parms);
+	}
+	
+	private String addWhere(Admin admin, String hql, List<Object> parms) {
+		return hql;
+	}
 }

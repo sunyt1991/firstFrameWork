@@ -63,18 +63,6 @@ public class RoleDaoImpl implements RoleDao{
 	}
 
 	@Override
-	public List<Role> find(String hql, Object[] param, Integer page,
-			Integer rows) {
-		return null;
-	}
-
-	@Override
-	public List<Role> find(String hql, List<Object> param, Integer page,
-			Integer rows) {
-		return null;
-	}
-
-	@Override
 	public Role get(Class<Role> c, Serializable id) {
 		return null;
 	}

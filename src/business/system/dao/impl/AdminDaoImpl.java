@@ -56,16 +56,6 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public List<Admin> find(String hql, Object[] param, Integer page, Integer rows) {
-		return null;
-	}
-
-	@Override
-	public List<Admin> find(String hql, List<Object> param, Integer page, Integer rows) {
-		return null;
-	}
-
-	@Override
 	public Admin get(Class<Admin> c, Serializable id) {
 		return null;
 	}

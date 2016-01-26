@@ -2,6 +2,7 @@ package business.system.service;
 
 import java.util.List;
 
+import plug.PageData;
 import plug.RequestPage;
 import business.system.entity.Admin;
 import business.system.entity.Role;
@@ -16,7 +17,7 @@ public interface AdminService {
 
 	public void delete(String ids);
 	
-	public List<Admin> list(Object[] params,RequestPage requestPage);
+	public PageData<Admin> list(Admin admin);
 	
 	public List<Role> getRoles(int adminId);
 		
