@@ -11,7 +11,7 @@
 		var url = "${ctx }/admin/edit.action";
 		$("<div id='admin_edit_box' style='padding: 10px'></div>").show().dialog({
 			width : 790,
-			height : 520,
+			height : area.height,
 			modal : true,
 			href : url,
 			title : '添加用户',
@@ -39,7 +39,7 @@
 		if (row) {
 			 $("<div id='admin_edit_box' style='padding: 10px'></div>").show().dialog({
 				width :790,
-				height : 520,
+				height : area.height,
 				modal : true,
 				href : '${ctx}/control/admin/edit.action?s_id=' + row.id,
 				title : '修改用户信息',

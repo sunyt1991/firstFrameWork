@@ -41,11 +41,12 @@
 	 	</property>
 	</bean> 
 	
-	<!-- interceptor -->
+	<!-- 拦截器 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<bean class="interceptor.SecurityInterceptor">
+				 <!-- 不需要权限验证的地址 -->
 				<property name="excludeUrls">
 					<list>
 						<value>/admin/login.action</value>

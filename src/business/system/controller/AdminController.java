@@ -1,5 +1,8 @@
 package business.system.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +23,7 @@ import util.ConfigUtil;
 import util.IpUtil;
 import business.base.controller.BaseController;
 import business.system.entity.Admin;
+import business.system.entity.Role;
 import business.system.service.AdminService;
 import business.system.service.RoleService;
 
@@ -49,7 +53,6 @@ public class AdminController extends BaseController {
 				SessionInfo sessionInfo = new SessionInfo();
 				sessionInfo.setAdminId(admin.getId());
 				sessionInfo.setLoginName(admin.getLoginname());
-				
 				sessionInfo.setIp(IpUtil.getIpAddr(request));
 				request.getSession().setAttribute(ConfigUtil.getSessionInfoName(), sessionInfo);
 				json.setMessage("登录成功");
@@ -69,8 +72,16 @@ public class AdminController extends BaseController {
 	}
 	
 	@RequestMapping("/edit")
-	public ModelAndView edit(int id) {
-		return new ModelAndView("system/admin/edit").addObject("bean", adminService.getById(id));
+	public ModelAndView edit(Integer id) {
+		Admin admin=adminService.getById(id);
+		Role role=null;
+		if(admin!=null){
+			List<Role> roles=admin.getRoles();
+			if(roles!=null&&roles.size()>0){
+				role=roles.get(0);
+			}
+		}
+		return new ModelAndView("system/admin/edit").addObject("bean",admin ).addObject("role",role);
 	}
 	
 	@RequestMapping("/list")
@@ -78,6 +89,27 @@ public class AdminController extends BaseController {
 	public PageData<Admin> list(HttpServletRequest request,Admin admin){
 		PageData<Admin> admins=adminService.list(admin);
 		return admins;
+	}
+	
+	@RequestMapping("/save")
+	public Json save(Admin admin,HttpServletRequest request){
+		Json json = new Json();
+		try {
+			Admin adminDb=adminService.save(admin);
+			int roleId=Integer.parseInt(request.getParameter("roleid"));
+			List<Role> roles=new ArrayList<Role>();
+			Role role=roleService.getById(roleId);
+			roles.add(role);
+			adminDb.setRoles(roles);
+			adminService.update(adminDb);
+			json.setMessage("保存成功");
+			json.setStatusCode(Json.STAE_CODE_SUCCESS);
+		} catch (NumberFormatException e) {
+			json.setMessage("保存失败");
+			json.setStatusCode(Json.STAE_CODE_ERROR);
+			e.printStackTrace();
+		}
+		return json;
 	}
 	
 	

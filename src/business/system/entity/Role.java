@@ -2,13 +2,18 @@ package business.system.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="sys_role",schema = "")
@@ -16,6 +21,7 @@ public class Role {
 	
 	@Id
 	@Column(name = "id",  nullable = false, length = 11)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
 	@Column(name = "name", nullable = true, length = 20)
@@ -56,6 +62,7 @@ public class Role {
 		this.descn = descn;
 	}
 	
+	@JsonIgnore
 	public List<Admin> getAdmins() {
 		return admins;
 	}
@@ -64,6 +71,7 @@ public class Role {
 		this.admins = admins;
 	}
 
+	@JsonIgnore
 	public List<Resource> getResources() {
 		return resources;
 	}

@@ -49,8 +49,8 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Override
-	public void save(Admin admin) {
-		
+	public Admin save(Admin admin) {
+		return baseDao.saveAndGetEntity(admin);
 	}
 
 	@Override
@@ -98,6 +98,14 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public Admin getById(Integer id) {
+		if(id==null){
+			return null;
+		}
 		return baseDao.get(Admin.class, id);
+	}
+
+	@Override
+	public void setRole(Role role) {
+		
 	}
 }

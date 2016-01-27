@@ -12,7 +12,7 @@
 	}
 	$("#admin_edit_form").form({
 		method : 'post',
-		url : "${ctx}/control/admin/save.action",
+		url : "${ctx}/admin/save.action",
 		onSubmit : function() {
 			var flag= $(this).form('enableValidation').form('validate');
 			if(flag){
@@ -28,13 +28,13 @@
 			}
 			return false;
 		},
-		success : function(msg) {
-			var json = JSON.parse(msg);
-			if (json.statusCode == 200) {
+		success : function(json) {
+			alert(json);
+			if (json.statusCode == '200') {
 				$("#admin_edit_box").dialog("destroy");
 				datagridReload();
 			}
-			infoMessage(json);
+			infoMessage(json.message);
 		}
 	});
 	var roleid='${role.id}';
@@ -49,19 +49,25 @@
 </script>
 <form id="admin_edit_form" method="post" data-options="novalidate:true" class="easyui-form">
 	<div class="easyui-layout" style="width:750px;height:400px;margin-top: 0px;margin-left: 0px;" >
-		<div data-options="region:'north'" style="height:41px">
+		<div data-options="region:'north'" style="height:81px">
 			<table width="100%" class="formTable" border="0">
 				<tr>
 					<td>用户名</td>
-					<td><input name="name" id="name" class="easyui-textbox w200"  data-options="required:true,validType:'length[1,20]'"  value="${bean.name }"/></td>
+					<td><input name="loginname" id="loginname" class="easyui-textbox w200"  data-options="required:true,validType:'length[1,20]'"  value="${bean.loginname }"/></td>
 					<td>密码</td>
 					<td><input name="pwd" class="easyui-textbox w200" data-options="required:true,validType:'length[1,6]'"  value="${bean.pwd }"/></td>
+				</tr>
+				<tr>
+					<td>真实姓名</td>
+					<td><input name="name" id="name" class="easyui-textbox w200"  data-options="required:true,validType:'length[1,20]'"  value="${bean.name }"/></td>
+					<td>邮箱</td>
+					<td><input name="email" class="easyui-textbox w200" data-options="required:true,validType:'length[1,6]'"  value="${bean.email }"/></td>
 				</tr>
 			</table>
 		</div>
 		 <div data-options="region:'center',title:'拥有角色',iconCls:'icon-ok'">
 		 	<table id="role_list_box"  class="easyui-datagrid" data-options="striped:true,fit:true, rownumbers:true,border:false,pagination:false,singleSelect:true,
-	      url:'${ctx }/control/role/list.action',onLoadSuccess:selectRoles" >
+	      		url:'${ctx }/role/list.action',onLoadSuccess:selectRoles" >
 		                  <thead>
 			               <tr>
 			                 <th data-options="field:'ck',checkbox:true"></th>
@@ -73,6 +79,6 @@
 	                  </table>
 		 </div>
 	</div>
-	<input type="hidden" name="id" value="${bean.id }">
-	<input type="hidden" name="roleid" id="roleid">
+	<input type="text" name="id" value="${bean.id }">
+	<input type="" name="roleid" id="roleid">
 </form>

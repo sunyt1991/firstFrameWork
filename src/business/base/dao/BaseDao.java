@@ -7,6 +7,8 @@ import java.util.Map;
 public interface BaseDao<T> {
 
 	public Serializable save(T o);
+	
+	public T saveAndGetEntity(T o);
 
 	public void delete(T o);
 

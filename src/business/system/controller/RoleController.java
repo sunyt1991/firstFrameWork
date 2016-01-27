@@ -1,15 +1,14 @@
 package business.system.controller;
 
 import java.util.List;
-
 import jxl.common.Logger;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import plug.Json;
+import plug.PageData;
 import plug.ZTreeInfo;
 import business.base.controller.BaseController;
 import business.system.entity.Role;
@@ -40,9 +39,16 @@ public class RoleController extends BaseController {
 		//根据角色获取菜单
 		List<ZTreeInfo> resources=roleService.getResource(role);
 		String resourcesStr=jsonUtil.toJson(resources);
-		System.out.println(">>:"+resourcesStr);
+		//System.out.println(">>:"+resourcesStr);
 		json.setParam(resourcesStr);
 		json.setParam(resourcesStr);
 		return new ModelAndView("frame/menu").addObject("json", json);
+	}
+	
+	@RequestMapping("/list")
+	@ResponseBody
+	public PageData<Role> list(Role role){
+		PageData<Role> roles=roleService.list(role);
+		return roles;
 	}
 }

@@ -11,7 +11,7 @@ public interface AdminService {
 	
 	public Admin login(String username,String password);
 
-	public void save(Admin admin);
+	public Admin save(Admin admin);
 
 	public void update(Admin admin);
 
@@ -20,6 +20,8 @@ public interface AdminService {
 	public PageData<Admin> list(Admin admin);
 	
 	public List<Role> getRoles(int adminId);
+	
+	public void setRole(Role role);
 		
 	public Admin getById(Integer id);
 

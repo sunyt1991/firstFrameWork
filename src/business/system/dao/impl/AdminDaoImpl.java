@@ -106,4 +106,9 @@ public class AdminDaoImpl implements AdminDao {
 		return roles;
 	}
 
+	@Override
+	public Admin saveAndGetEntity(Admin o) {
+		return null;
+	}
+
 }

@@ -2,7 +2,6 @@ package filter;
 
 import java.io.File;
 import java.io.IOException;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -11,13 +10,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.log4j.Logger;
 
 /**
- * If there if error in uploading a file, return a picture.
- * 
+ * 文件下载拦截器，当文件不存在时，展示默认图片
  */
 public class ErrorImgFilter extends HttpServlet implements Filter {
 
@@ -25,7 +21,7 @@ public class ErrorImgFilter extends HttpServlet implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
-		HttpServletResponse res = (HttpServletResponse) response;
+		//HttpServletResponse resp = (HttpServletResponse) response;
 		String realPath = req.getSession().getServletContext().getRealPath("/");
 		String contextPath = req.getContextPath();
 		String requestURI = req.getRequestURI();
@@ -34,7 +30,7 @@ public class ErrorImgFilter extends HttpServlet implements Filter {
 
 		File f = new File(fileUrl);
 		if (!f.exists()) {
-			request.getRequestDispatcher("/error/notfound.png").forward(request, response);
+			request.getRequestDispatcher("/images/error/notfound.png").forward(request, response);
 			return;
 		}
 

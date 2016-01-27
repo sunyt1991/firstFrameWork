@@ -30,6 +30,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	public Serializable save(T o) {
 		return this.getCurrentSession().save(o);
 	}
+	
+	public T saveAndGetEntity(T o) {
+		this.getCurrentSession().save(o);
+		return o;
+	}
 
 	public void delete(T o) {
 		this.getCurrentSession().delete(o);

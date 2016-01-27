@@ -24,8 +24,8 @@ import plug.SessionInfo;
 import util.ConfigUtil;
 
 /**
- * online user monitor
- * 
+ * 在线用户监听
+ * @author Administrator
  */
 public class OnlineListener implements ServletContextListener, ServletContextAttributeListener, 
 	HttpSessionListener, HttpSessionAttributeListener, HttpSessionActivationListener, 
@@ -40,62 +40,45 @@ public class OnlineListener implements ServletContextListener, ServletContextAtt
 	
 	@Override
 	public void attributeAdded(ServletRequestAttributeEvent evt) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void attributeRemoved(ServletRequestAttributeEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void attributeReplaced(ServletRequestAttributeEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void requestDestroyed(ServletRequestEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void requestInitialized(ServletRequestEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void valueBound(HttpSessionBindingEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void valueUnbound(HttpSessionBindingEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void sessionDidActivate(HttpSessionEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void sessionWillPassivate(HttpSessionEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	@Override
 	public void attributeAdded(HttpSessionBindingEvent evt) {
 		String name = evt.getName();
 		logger.debug("The name of attribute saved in session: " + name);
-		System.out.println(name);
+		System.out.println(name+" 存入 session。");
 		if (ConfigUtil.getSessionInfoName().equals(name)) {
 			HttpSession session = evt.getSession();
 			SessionInfo sessionInfo = (SessionInfo) session.getAttribute(name);
@@ -111,58 +94,38 @@ public class OnlineListener implements ServletContextListener, ServletContextAtt
 
 	@Override
 	public void attributeRemoved(HttpSessionBindingEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void attributeReplaced(HttpSessionBindingEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void sessionCreated(HttpSessionEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void sessionDestroyed(HttpSessionEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void attributeAdded(ServletContextAttributeEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void attributeRemoved(ServletContextAttributeEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void attributeReplaced(ServletContextAttributeEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
-	/**
-	 * ϵͳ���ʱ�ص�
-	 */
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
 		logger.debug("server closed");
 		System.out.println("系统关闭");
 	}
 
-	/**
-	 * ϵͳ����ʱ�ص�
-	 */
 	@Override
 	public void contextInitialized(ServletContextEvent evt) {
 		logger.debug("server started");
