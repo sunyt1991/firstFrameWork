@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSessionListener;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import plug.SessionInfo;
