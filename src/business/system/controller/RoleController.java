@@ -1,12 +1,15 @@
 package business.system.controller;
 
 import java.util.List;
+
 import jxl.common.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 import plug.Json;
 import plug.PageData;
 import plug.ZTreeInfo;
@@ -42,6 +45,12 @@ public class RoleController extends BaseController {
 		//System.out.println(">>:"+resourcesStr);
 		json.setParam(resourcesStr);
 		return new ModelAndView("frame/menu").addObject("json", json);
+	}
+	
+	
+	@RequestMapping("/index")
+	public String main() {
+		return "system/role/index";
 	}
 	
 	@RequestMapping("/list")

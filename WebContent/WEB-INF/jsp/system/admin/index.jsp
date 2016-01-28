@@ -93,8 +93,8 @@
 	}
 	
 	function searchData(){
-		$("#engi_list_box").datagrid({
-			url: '${ctx }/control/engi/list.action?s_name='+encodeURI(encodeURI(($("#s_name").val())))+"&startmark="+encodeURIComponent($("#startmark").combobox('getValue'))
+		$("#admin_list_box").datagrid({
+			url: '${ctx }/admin/list.action?s_name='+encodeURI(encodeURI(($("#s_name").val())))+"&startmark="+encodeURIComponent($("#startmark").combobox('getValue'))
 		});
 	}
 </script>
@@ -105,6 +105,7 @@
 			<a href="javascript:add();" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">新增</a>
 			<a href="javascript:edit();" class="easyui-linkbutton" data-options="iconCls:'icon-ex-edit',plain:true">修改</a> 
 			<a href="javascript:remove();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
+			<a href="javascript:reload();" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true">刷新</a>
 			<div>
 			登录名: <input class="easyui-textbox" style="width:150px" id="s_name">
 			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="searchData();" data-options="iconCls:'icon-search',plain:true,disabled:false">查询</a>

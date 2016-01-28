@@ -103,4 +103,15 @@ public class ResourceDaoImpl implements ResourceDao{
 		return null;
 	}
 
+	@Override
+	public List<Resource> parentList() {
+		return null;
+	}
+
+	@Override
+	public List<Resource> childList(Integer pid) {
+		
+		return null;
+	}
+
 }

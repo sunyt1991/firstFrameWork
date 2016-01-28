@@ -7,4 +7,9 @@ import business.system.entity.Resource;
 import business.system.entity.Role;
 
 public interface ResourceDao extends BaseDao<Resource>{
+	
+	public List<Resource> parentList();
+	
+	public List<Resource> childList(Integer pid);
+	
 }
