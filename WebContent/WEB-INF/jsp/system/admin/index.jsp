@@ -41,7 +41,7 @@
 				width :790,
 				height : area.height,
 				modal : true,
-				href : '${ctx}/control/admin/edit.action?s_id=' + row.id,
+				href : '${ctx}/admin/edit.action?id=' + row.id,
 				title : '修改用户信息',
 				buttons : [ {
 					text : '确定',
@@ -72,9 +72,9 @@
 		if (row) {
 			$.messager.confirm('警示信息', '信息删除后不可恢复，确定吗?', function(r) {
 				if (r) {
-					$.post("${ctx}/control/admin/remove.action?s_id=" + row.id,
+					$.post("${ctx}/admin/isdelete.action?s_id=" + row.id,
 							function(json) {
-								infoMessage(json);
+								infoMessage(json.message);
 								if (json.statusCode == 200) {
 									datagridReload(); 
 								}
@@ -94,7 +94,7 @@
 	
 	function searchData(){
 		$("#engi_list_box").datagrid({
-					 url: '${ctx }/control/engi/list.action?s_name='+encodeURI(encodeURI(($("#s_name").val())))+"&startmark="+encodeURIComponent($("#startmark").combobox('getValue'))
+			url: '${ctx }/control/engi/list.action?s_name='+encodeURI(encodeURI(($("#s_name").val())))+"&startmark="+encodeURIComponent($("#startmark").combobox('getValue'))
 		});
 	}
 </script>
@@ -115,7 +115,10 @@
 			<thead>
 				<tr>
 					<th data-options="field:'id',hidden:true">ID</th>
-				    <th data-options="field:'name',width:50,halign:'center',align:'left'">用户名</th>
+				    <th data-options="field:'loginname',width:50,halign:'center',align:'left'">用户名</th>
+				    <th data-options="field:'name',width:80,halign:'center',align:'left'">真实姓名</th>
+				    <th data-options="field:'email',width:80,halign:'center',align:'left'">邮箱</th>
+				    <th data-options="field:'state',width:50,halign:'center',align:'left'">状态</th>
 			    </tr>
 		    </thead>
 	  </table>

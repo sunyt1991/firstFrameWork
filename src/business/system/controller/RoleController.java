@@ -41,7 +41,6 @@ public class RoleController extends BaseController {
 		String resourcesStr=jsonUtil.toJson(resources);
 		//System.out.println(">>:"+resourcesStr);
 		json.setParam(resourcesStr);
-		json.setParam(resourcesStr);
 		return new ModelAndView("frame/menu").addObject("json", json);
 	}
 	

@@ -15,7 +15,7 @@ public interface AdminService {
 
 	public void update(Admin admin);
 
-	public void delete(String ids);
+	public void delete(Integer id);
 	
 	public PageData<Admin> list(Admin admin);
 	

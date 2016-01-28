@@ -3,6 +3,7 @@ package business.system.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,8 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.CascadeType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -46,7 +45,7 @@ public class Admin {
 	private int isdelete;
 	
 	@JsonIgnore
-	@ManyToMany
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
 	@JoinTable(name = "sys_admin_role", joinColumns = { @JoinColumn(name = "adminid") }, inverseJoinColumns = { @JoinColumn(name = "roleid") })
 	private List<Role> roles=new ArrayList<Role>();
 	

@@ -59,8 +59,9 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public void delete(String ids) {
-		
+	public void delete(Integer id) {
+		Admin admin=this.getById(id);
+		baseDao.delete(admin);
 	}
 
 	@Override

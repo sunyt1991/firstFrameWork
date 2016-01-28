@@ -3,8 +3,10 @@ package business.system.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,12 +33,12 @@ public class Role {
 	private String descn;
 	
 	@JsonIgnore
-	@ManyToMany  
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)  
     @JoinTable(name = "sys_admin_role",  joinColumns = @JoinColumn(name = "roleid"), inverseJoinColumns = @JoinColumn(name = "adminid"))  
 	private List<Admin> admins=new ArrayList<Admin>();
 	
 	@JsonIgnore
-	@ManyToMany
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
 	@JoinTable(name = "sys_role_resource", joinColumns = @JoinColumn(name = "roleid"),inverseJoinColumns = @JoinColumn(name = "resourceid"))
 	private List<Resource> resources = new ArrayList<Resource>();
 	

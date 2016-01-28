@@ -20,6 +20,7 @@ import plug.PageData;
 import plug.RandomValidateCode;
 import plug.SessionInfo;
 import util.ConfigUtil;
+import util.EncryUtil;
 import util.IpUtil;
 import util.JacksonUtil;
 import business.base.controller.BaseController;
@@ -93,9 +94,15 @@ public class AdminController extends BaseController {
 	}
 	
 	@RequestMapping("/save")
+	@ResponseBody
 	public Json save(Admin admin,HttpServletRequest request){
 		Json json = new Json();
 		try {
+			String pwd="";
+			if(StringUtils.isBlank(request.getParameter("id"))){
+				pwd=EncryUtil.e("123");
+				admin.setPwd(pwd);
+			}
 			Admin adminDb=adminService.save(admin);
 			int roleId=Integer.parseInt(request.getParameter("roleid"));
 			List<Role> roles=new ArrayList<Role>();
@@ -111,6 +118,23 @@ public class AdminController extends BaseController {
 			e.printStackTrace();
 		}
 		return json;
+	}
+	
+	@RequestMapping("/isdelete")
+	public ModelAndView isdelete(HttpServletRequest request){
+		Json json = new Json();
+		try {
+			Admin admin=adminService.getById(Integer.parseInt(request.getParameter("id")));
+			admin.setIsdelete(1);
+			adminService.update(admin);
+			json.setMessage("删除成功");
+			json.setStatusCode(Json.STAE_CODE_SUCCESS);
+		} catch (NumberFormatException e) {
+			json.setMessage("删除失败");
+			json.setStatusCode(Json.STAE_CODE_ERROR);
+			e.printStackTrace();
+		}
+		return new ModelAndView(RESULT).addObject(RESULT, json);
 	}
 	
 	
