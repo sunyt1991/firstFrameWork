@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CascadeType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -42,6 +45,7 @@ public class Admin {
 	@Column(name = "isdelete", nullable = true, length = 11)
 	private int isdelete;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "sys_admin_role", joinColumns = { @JoinColumn(name = "adminid") }, inverseJoinColumns = { @JoinColumn(name = "roleid") })
 	private List<Role> roles=new ArrayList<Role>();
@@ -102,7 +106,6 @@ public class Admin {
 		this.isdelete = isdelete;
 	}
 	
-	@JsonIgnore
 	public List<Role> getRoles() {
 		return roles;
 	}

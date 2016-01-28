@@ -23,6 +23,8 @@ public class BaseController {
 
 	protected JacksonUtil jsonUtil = new JacksonUtil("yyyy-MM-dd HH:mm:ss");
 	
+	public static final String RESULT="result";
+	
 	@InitBinder
 	public void initBinder(ServletRequestDataBinder binder) {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"), true));

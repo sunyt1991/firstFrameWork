@@ -49,6 +49,7 @@ public class Resource {
 	@Column(name = "options", nullable = true, length = 255)
 	private String options;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "resources")  
 	private List<Role> roles = new ArrayList<Role>();
 
@@ -132,7 +133,6 @@ public class Resource {
 		this.options = options;
 	}
 
-	@JsonIgnore
 	public List<Role> getRoles() {
 		return roles;
 	}

@@ -21,6 +21,7 @@ import plug.RandomValidateCode;
 import plug.SessionInfo;
 import util.ConfigUtil;
 import util.IpUtil;
+import util.JacksonUtil;
 import business.base.controller.BaseController;
 import business.system.entity.Admin;
 import business.system.entity.Role;
@@ -85,10 +86,10 @@ public class AdminController extends BaseController {
 	}
 	
 	@RequestMapping("/list")
-	@ResponseBody
-	public PageData<Admin> list(HttpServletRequest request,Admin admin){
+	public ModelAndView list(HttpServletRequest request,Admin admin){
 		PageData<Admin> admins=adminService.list(admin);
-		return admins;
+		JacksonUtil jsonUtil=new JacksonUtil("yyyy-MM-dd HH:mm:ss");
+		return new ModelAndView(RESULT).addObject(RESULT,jsonUtil.toJson(admins));
 	}
 	
 	@RequestMapping("/save")

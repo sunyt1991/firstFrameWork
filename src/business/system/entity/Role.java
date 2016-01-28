@@ -30,10 +30,12 @@ public class Role {
 	@Column(name = "descn", nullable = true, length = 200)
 	private String descn;
 	
+	@JsonIgnore
 	@ManyToMany  
     @JoinTable(name = "sys_admin_role",  joinColumns = @JoinColumn(name = "roleid"), inverseJoinColumns = @JoinColumn(name = "adminid"))  
 	private List<Admin> admins=new ArrayList<Admin>();
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "sys_role_resource", joinColumns = @JoinColumn(name = "roleid"),inverseJoinColumns = @JoinColumn(name = "resourceid"))
 	private List<Resource> resources = new ArrayList<Resource>();
@@ -62,7 +64,6 @@ public class Role {
 		this.descn = descn;
 	}
 	
-	@JsonIgnore
 	public List<Admin> getAdmins() {
 		return admins;
 	}
@@ -71,7 +72,6 @@ public class Role {
 		this.admins = admins;
 	}
 
-	@JsonIgnore
 	public List<Resource> getResources() {
 		return resources;
 	}
