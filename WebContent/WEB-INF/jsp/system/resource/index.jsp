@@ -135,7 +135,7 @@ function refresh(){
 		<a href="javascript:void(0)" id="dictionary_refresh_btn" onclick="refresh();" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true">刷新</a>
 	</div>
 <div region="center" border="false" >
-	   <table id="treegrid" title="数据字典" class="easyui-treegrid" style="width:700px;height:300px"
+	   <table id="treegrid" class="easyui-treegrid" style="width:700px;height:300px"
             data-options="
                 url: '${ctx }/resource/list.do',
                 rownumbers: true,
