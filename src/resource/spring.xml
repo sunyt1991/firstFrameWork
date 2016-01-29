@@ -23,5 +23,11 @@
 	<context:component-scan base-package="business.base.dao,business.base.service,business.system.dao,business.system.service,business.manager.dao,business.manager.service" />
 
     <aop:aspectj-autoproxy />
+    
+    <bean id="performanceMonitor"  class="org.springframework.aop.interceptor.PerformanceMonitorInterceptor" />
+	<aop:config>
+    	<aop:pointcut id="allServiceMethods" expression="execution(* business.system.service.*.*(..))"/>
+    	<aop:advisor pointcut-ref="allServiceMethods" advice-ref="performanceMonitor" order="2"/>
+	</aop:config>
 
 </beans>

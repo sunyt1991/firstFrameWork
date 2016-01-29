@@ -4,29 +4,70 @@ Source Host: localhost
 Source Database: firstframework
 Target Host: localhost
 Target Database: firstframework
-Date: 2016/1/22 8:17:15
+Date: 2016/1/29 13:55:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
--- Table structure for mag_worker
+-- Table structure for dev_operation_log
 -- ----------------------------
-CREATE TABLE `mag_worker` (
+CREATE TABLE `dev_operation_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `age` int(11) DEFAULT NULL,
-  `sex` varchar(255) DEFAULT NULL,
+  `operate` varchar(20) DEFAULT NULL COMMENT '操作',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for dev_property
+-- ----------------------------
+CREATE TABLE `dev_property` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `actionname` varchar(50) DEFAULT NULL COMMENT '操作名称',
+  `responsetime` int(11) DEFAULT NULL COMMENT '响应时长',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for mag_level
+-- ----------------------------
+CREATE TABLE `mag_level` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `num1` int(2) DEFAULT NULL,
+  `num2` int(2) DEFAULT NULL,
+  `num3` int(2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for mag_online
+-- ----------------------------
+CREATE TABLE `mag_online` (
+  `id` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL COMMENT '在线用户',
+  `createdate` datetime DEFAULT NULL COMMENT '上线时间'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for mag_website
+-- ----------------------------
+CREATE TABLE `mag_website` (
+  `id` int(10) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL COMMENT '网址',
+  `iskeypoint` int(2) DEFAULT NULL COMMENT '是否重点关注',
+  `level` int(2) DEFAULT NULL COMMENT '警预级别 123',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for sys_admin
 -- ----------------------------
 CREATE TABLE `sys_admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `loginname` varchar(255) NOT NULL,
-  `pwd` varchar(255) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `loginname` varchar(50) NOT NULL COMMENT '用户名',
+  `pwd` varchar(50) NOT NULL COMMENT '密码',
+  `name` varchar(50) DEFAULT NULL COMMENT '姓名',
+  `email` varchar(50) DEFAULT NULL COMMENT '邮箱',
   `isdelete` int(11) DEFAULT NULL,
   `state` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -84,7 +125,7 @@ CREATE TABLE `sys_resource` (
   PRIMARY KEY (`id`),
   KEY `FK1A51B40E38C5B4F1` (`pid`) USING BTREE,
   KEY `FKEBABC40E7587A73C` (`pid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -100,7 +141,7 @@ CREATE TABLE `sys_role` (
   `resstring` varchar(20) DEFAULT NULL,
   `restype` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for sys_role_resource
@@ -118,20 +159,30 @@ CREATE TABLE `sys_role_resource` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `mag_worker` VALUES ('1', '张三1', '20', '1');
-INSERT INTO `mag_worker` VALUES ('3', '王武', null, null);
-INSERT INTO `mag_worker` VALUES ('5', '123', null, '1');
-INSERT INTO `sys_admin` VALUES ('1', 'admin', '202CB962AC59075B964B07152D234B70', '管理员', '0', '0');
+INSERT INTO `sys_admin` VALUES ('1', 'admin', '202CB962AC59075B964B07152D234B70', '管理员', null, '0', '0');
 INSERT INTO `sys_admin_role` VALUES ('1', '1');
-INSERT INTO `sys_resource` VALUES ('1', '系统维护', 'url', null, null, null, '4', '0', 'tab', null);
-INSERT INTO `sys_resource` VALUES ('2', '账号信息', 'url', 'system/admin.do', null, '1', '3', '1', 'tab', null);
-INSERT INTO `sys_resource` VALUES ('3', '角色管理', 'url', 'system/role.do', null, '1', '4', '1', 'tab', null);
-INSERT INTO `sys_resource` VALUES ('6', '菜单管理', 'url', 'system/resource.do', null, '1', '6', '1', 'tab', null);
-INSERT INTO `sys_resource` VALUES ('16', '数据字典', 'url', 'system/dictionary.do', null, '1', '3', '1', 'tab', null);
-INSERT INTO `sys_role` VALUES ('1', '超级管理员', '负责整个系统的管理', null, null, null, null, null, null);
-INSERT INTO `sys_role` VALUES ('2', '普通用户', '负责系统业务管理', null, null, null, null, null, null);
+INSERT INTO `sys_resource` VALUES ('1', '数据维护', 'url', null, null, null, '4', '0', 'tab', null);
+INSERT INTO `sys_resource` VALUES ('2', '账号信息', 'url', 'admin/index.action', null, '1', '3', '1', 'tab', null);
+INSERT INTO `sys_resource` VALUES ('3', '角色管理', 'url', 'role/index.action', null, '1', '4', '1', 'tab', null);
+INSERT INTO `sys_resource` VALUES ('6', '菜单管理', 'url', 'resource/index.action', null, '1', '6', '1', 'tab', null);
+INSERT INTO `sys_resource` VALUES ('16', '数据字典', 'url', 'dictionary/index.action', null, '1', '3', '1', 'tab', null);
+INSERT INTO `sys_resource` VALUES ('17', '系统安全', 'url', null, null, null, '5', '0', 'tab', null);
+INSERT INTO `sys_resource` VALUES ('18', '登录日志', 'url', null, null, '17', '1', '1', 'tab', null);
+INSERT INTO `sys_resource` VALUES ('19', '数据备份', 'url', null, null, '17', '2', '1', 'tab', null);
+INSERT INTO `sys_resource` VALUES ('20', '系统通知', 'url', null, null, '1', '7', '1', 'tab', null);
+INSERT INTO `sys_resource` VALUES ('21', '系统性能', 'url', null, null, null, '5', '0', 'tab', null);
+INSERT INTO `sys_resource` VALUES ('22', '性能分析', 'url', 'druid/index.html', null, '21', '1', '1', 'tab', null);
+INSERT INTO `sys_role` VALUES ('1', '超级管理员', '负责系统业务管理', null, null, null, null, null, null);
+INSERT INTO `sys_role` VALUES ('2', '开发人员', '最高权限', null, null, null, null, null, null);
+INSERT INTO `sys_role` VALUES ('3', '普通用户', null, null, null, null, null, null, null);
 INSERT INTO `sys_role_resource` VALUES ('1', '1');
 INSERT INTO `sys_role_resource` VALUES ('1', '2');
 INSERT INTO `sys_role_resource` VALUES ('1', '3');
 INSERT INTO `sys_role_resource` VALUES ('1', '6');
 INSERT INTO `sys_role_resource` VALUES ('1', '16');
+INSERT INTO `sys_role_resource` VALUES ('1', '17');
+INSERT INTO `sys_role_resource` VALUES ('1', '18');
+INSERT INTO `sys_role_resource` VALUES ('1', '19');
+INSERT INTO `sys_role_resource` VALUES ('1', '20');
+INSERT INTO `sys_role_resource` VALUES ('1', '21');
+INSERT INTO `sys_role_resource` VALUES ('1', '22');
