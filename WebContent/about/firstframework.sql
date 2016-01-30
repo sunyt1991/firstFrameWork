@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: firstframework
 Target Host: localhost
 Target Database: firstframework
-Date: 2016/1/29 13:55:56
+Date: 2016/1/30 13:37:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -14,16 +14,6 @@ SET FOREIGN_KEY_CHECKS=0;
 CREATE TABLE `dev_operation_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `operate` varchar(20) DEFAULT NULL COMMENT '操作',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for dev_property
--- ----------------------------
-CREATE TABLE `dev_property` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `actionname` varchar(50) DEFAULT NULL COMMENT '操作名称',
-  `responsetime` int(11) DEFAULT NULL COMMENT '响应时长',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -42,9 +32,10 @@ CREATE TABLE `mag_level` (
 -- Table structure for mag_online
 -- ----------------------------
 CREATE TABLE `mag_online` (
-  `id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL COMMENT '在线用户',
-  `createdate` datetime DEFAULT NULL COMMENT '上线时间'
+  `createdate` datetime DEFAULT NULL COMMENT '上线时间',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
